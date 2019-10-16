@@ -93,13 +93,19 @@ export default class ItemCard extends Component {
     this.props.backButton(this.props.isNew);
   };
 
-  inputChangedHandler = (e, tgt) => {
-    this.setState({ data: { ...this.state.data, [tgt]: e.target.value } });
+  inputChangedHandler = (e, tgt, nameType) => {
+    this.setState({
+      data: { ...this.state.data, type: nameType, [tgt]: e.target.value },
+    });
   };
 
-  inputNestedChangedHandler = (e, tgt) => {
+  inputNestedChangedHandler = (e, tgt, nameType) => {
     this.setState({
-      data: { ...this.state.data, identifiers: { [tgt]: e.target.value } },
+      data: {
+        ...this.state.data,
+        type: nameType,
+        identifiers: { [tgt]: e.target.value },
+      },
     });
   };
 
@@ -127,7 +133,6 @@ export default class ItemCard extends Component {
         <div className="content">
           {nameType === 'Nota' && (
             <form action="">
-              {name}
               <div className="form-block">
                 <label htmlFor="" style={{ color }}>
                   NOME
@@ -137,7 +142,9 @@ export default class ItemCard extends Component {
                   type="text"
                   defaultValue={name}
                   style={{ borderColor: color }}
-                  onChange={event => this.inputChangedHandler(event, 'name')}
+                  onChange={event =>
+                    this.inputChangedHandler(event, 'name', nameType)
+                  }
                 />
               </div>
               <div className="form-block">
@@ -152,7 +159,7 @@ export default class ItemCard extends Component {
                   style={{ borderColor: color }}
                   defaultValue={notes}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'notes')
+                    this.inputNestedChangedHandler(event, 'notes', nameType)
                   }
                 />
               </div>
@@ -168,7 +175,9 @@ export default class ItemCard extends Component {
                   type="text"
                   value={name}
                   style={{ borderColor: color }}
-                  onChange={event => this.inputChangedHandler(event, 'name')}
+                  onChange={event =>
+                    this.inputChangedHandler(event, 'name', nameType)
+                  }
                 />
               </div>
               <div className="form-block">
@@ -180,7 +189,7 @@ export default class ItemCard extends Component {
                   value={login_url}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputChangedHandler(event, 'login_url')
+                    this.inputChangedHandler(event, 'login_url', nameType)
                   }
                 />
               </div>
@@ -193,7 +202,7 @@ export default class ItemCard extends Component {
                   defaultValue={username}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'username')
+                    this.inputNestedChangedHandler(event, 'username', nameType)
                   }
                 />
               </div>
@@ -206,7 +215,7 @@ export default class ItemCard extends Component {
                   value={password}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'password')
+                    this.inputNestedChangedHandler(event, 'password', nameType)
                   }
                 />
               </div>
@@ -223,6 +232,9 @@ export default class ItemCard extends Component {
                   type="text"
                   value={name}
                   style={{ borderColor: color }}
+                  onChange={event =>
+                    this.inputChangedHandler(event, 'name', nameType)
+                  }
                 />
               </div>
               <div className="form-block">
@@ -234,7 +246,11 @@ export default class ItemCard extends Component {
                   value={cardNumber}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'cardNumber')
+                    this.inputNestedChangedHandler(
+                      event,
+                      'cardNumber',
+                      nameType
+                    )
                   }
                 />
               </div>
@@ -247,7 +263,7 @@ export default class ItemCard extends Component {
                   value={expires}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'expires')
+                    this.inputNestedChangedHandler(event, 'expires', nameType)
                   }
                 />
               </div>
@@ -260,7 +276,11 @@ export default class ItemCard extends Component {
                   value={security_code}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'security_code')
+                    this.inputNestedChangedHandler(
+                      event,
+                      'security_code',
+                      nameType
+                    )
                   }
                 />
               </div>
@@ -273,7 +293,11 @@ export default class ItemCard extends Component {
                   value={nameOnCard}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'nameOnCard')
+                    this.inputNestedChangedHandler(
+                      event,
+                      'nameOnCard',
+                      nameType
+                    )
                   }
                 />
               </div>
@@ -286,7 +310,7 @@ export default class ItemCard extends Component {
                   value={cardType}
                   style={{ borderColor: color }}
                   onChange={event =>
-                    this.inputNestedChangedHandler(event, 'cardType')
+                    this.inputNestedChangedHandler(event, 'cardType', nameType)
                   }
                 />
               </div>
