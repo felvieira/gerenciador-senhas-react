@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Colors } from './styles';
 import Header from '../Header';
 import localStorager from '../../services/storage';
+// import Cards from 'react-credit-cards';
+// https://github.com/amarofashion/react-credit-cards
 
 const info = (type, isnew) => {
   switch (type) {

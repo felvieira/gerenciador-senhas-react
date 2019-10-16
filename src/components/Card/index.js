@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { FaTrashAlt } from 'react-icons/fa';
 import { Type, Name, Dates, Site, Colors } from './styles';
+import localStorager from '../../services/storage';
 
 const switchType = type => {
   switch (type) {
@@ -65,6 +66,12 @@ export default class Card extends Component {
     this.props.editFN(item, i);
   };
 
+  eraseHandler = (e, i) => {
+    e.stopPropagation();
+    localStorager.delete(i, 'pass');
+    this.props.update();
+  };
+
   render() {
     return this.props.list.map((item, i) => {
       const cor = switchColor(item.type);
@@ -103,7 +110,7 @@ export default class Card extends Component {
             </Dates>
           </div>
           <div className="card-erase">
-            <FaTrashAlt />
+            <FaTrashAlt onClick={e => this.eraseHandler(e, i)} />
           </div>
         </div>
       );

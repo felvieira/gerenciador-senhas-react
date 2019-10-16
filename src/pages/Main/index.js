@@ -157,6 +157,7 @@ export default class Main extends Component {
             list={this.state.passwords}
             newFN={this.newItem}
             editFN={this.editItem}
+            update={this.getDataHandler}
           />
         </div>
         <RoundButton action={this.newItem} />
