@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import 'moment/locale/pt-br';
 import { Colors } from './styles';
 import Header from '../Header';
 import localStorager from '../../services/storage';
+
 // import Cards from 'react-credit-cards';
 // https://github.com/amarofashion/react-credit-cards
 
@@ -96,15 +99,29 @@ export default class ItemCard extends Component {
   };
 
   inputChangedHandler = (e, tgt, nameType) => {
+    const dt = moment()
+      .locale('pt-br')
+      .format('DD/MM/YYYY HH:mm');
+    console.log('TCL: ItemCard -> inputChangedHandler -> data', dt);
     this.setState({
-      data: { ...this.state.data, type: nameType, [tgt]: e.target.value },
+      data: {
+        ...this.state.data,
+        date: dt,
+        type: nameType,
+        [tgt]: e.target.value,
+      },
     });
   };
 
   inputNestedChangedHandler = (e, tgt, nameType) => {
+    const dt = moment()
+      .locale('pt-br')
+      .format('DD/MM/YYYY HH:mm');
+    console.log('TCL: ItemCard -> inputNestedChangedHandler -> data', dt);
     this.setState({
       data: {
         ...this.state.data,
+        date: dt,
         type: nameType,
         identifiers: { [tgt]: e.target.value },
       },

@@ -76,7 +76,6 @@ export default class Card extends Component {
     return this.props.list.map((item, i) => {
       const cor = switchColor(item.type);
       item.type = switchType(item.type);
-      item.date = 'Atualizado em 12/12/19';
 
       return (
         <div id={`card-${i}`} className="card" key={i}>
@@ -106,7 +105,7 @@ export default class Card extends Component {
               style={{ cursor: 'pointer' }}
               onClick={e => this.handleEdit(e, item, i)}
             >
-              {item.date}
+              Atualizado em {item.date}
             </Dates>
           </div>
           <div className="card-erase">

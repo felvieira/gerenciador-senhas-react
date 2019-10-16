@@ -6,6 +6,8 @@
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "install": "^0.13.0",
+    "moment": "^2.24.0",
     "react": "^16.10.1",
     "react-credit-cards": "^0.8.0",
     "react-dom": "^16.10.1",
