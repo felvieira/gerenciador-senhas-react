@@ -119,6 +119,11 @@ export default class Main extends Component {
 
   componentDidUpdate(_, prevState) {
     const { passwords } = this.state;
+    console.log(
+      'TCL: Main -> componentDidUpdate -> PREVpasswords',
+      prevState.passwords
+    );
+    console.log('TCL: Main -> componentDidUpdate -> passwords', passwords);
 
     if (prevState.passwords !== passwords) {
       localStorage.setItem('pass', JSON.stringify(passwords));

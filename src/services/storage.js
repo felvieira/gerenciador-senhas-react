@@ -37,20 +37,10 @@ export default {
 
     localStorage[obj] = JSON.stringify(value);
   },
-  update(key, objTarget, obj) {
-    const value = JSON.parse(localStorage.getItem(objTarget));
-
-    if (!value) return;
-
-    if (value.length <= 1 || key === 0) {
-      value.shift();
-    } else {
-      value.splice(key, key);
-    }
-    // const valueFinal = insert(value, key, obj);
-    value.splice(key, 0, obj);
-
-    localStorage[objTarget] = JSON.stringify(value);
+  update(name, key, value) {
+    const data = JSON.parse(localStorage.getItem(name));
+    data[key] = value;
+    localStorage.setItem(name, JSON.stringify(data));
   },
   clear(one) {
     if (one) {

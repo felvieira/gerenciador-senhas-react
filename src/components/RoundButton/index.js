@@ -25,18 +25,21 @@ export default class RoundButton extends Component {
         {submenu && (
           <div className="submenu">
             <button
+              type="submit"
               style={{ backgroundColor: '#15ADF6' }}
               onClick={e => this.newItem(e, 'GenericNote')}
             >
               Nota
             </button>
             <button
+              type="submit"
               style={{ backgroundColor: '#6155CC' }}
               onClick={e => this.newItem(e, 'Site')}
             >
               Site
             </button>
             <button
+              type="submit"
               style={{ backgroundColor: '#2EB872' }}
               onClick={e => this.newItem(e, 'CreditCard')}
             >
