@@ -9,26 +9,54 @@ import ItemCard from '../../components/ItemCard';
 export default class Main extends Component {
   state = {
     data: [],
-    passwords: [],
+    list: [],
+    paginateList: [],
     showNew: false,
     showEdit: false,
     typeModal: '',
     itemSelected: null,
     index: null,
+    page: 1,
+    scroll: true,
   };
 
-  filteredItems = pass =>
-    pass.filter(
-      item =>
-        item.type === 'GenericNote' ||
-        item.type === 'CreditCard' ||
-        item.type === 'Website'
-    );
+  filteredItems = pass => {
+    const types = [
+      'GenericNote',
+      'Nota',
+      'CreditCard',
+      'Cartão de crédito',
+      'Website',
+      'Site',
+    ];
+    return pass.filter(item => types.includes(item.type));
+  };
+
+  repeteadNamedItems = pass => {
+    let names = [];
+    const combinedPass = [];
+
+    pass.forEach(function(user) {
+      names.push(user.name);
+    });
+
+    names = [...new Set(names)];
+    names.forEach(name => {
+      let passMatchedName = pass.filter(passObj => {
+        return name === passObj.name;
+      });
+
+      if (passMatchedName.length > 1) {
+        passMatchedName = Object.assign(passMatchedName[0], passMatchedName[1]);
+        combinedPass.push(passMatchedName);
+      } else {
+        combinedPass.push(passMatchedName[0]);
+      }
+    });
+    return combinedPass;
+  };
 
   searchItems = (pass, str) => {
-    if (str.includes('all')) {
-      return this.state.data;
-    }
     return pass.filter(item => {
       if (item.name.includes(str)) return item;
       if (item.type.includes(str)) return item;
@@ -38,9 +66,21 @@ export default class Main extends Component {
 
   // Método em callback para pegar input do Children
   handleSearch = inputValueInSearch => {
-    const pass = this.searchItems(this.state.passwords, inputValueInSearch);
+    let pass = '';
+    if (inputValueInSearch === 'all') {
+      this.setState({
+        scroll: true,
+      });
+      pass = this.state.paginateList;
+    } else {
+      this.setState({
+        scroll: false,
+      });
+      pass = this.searchItems(this.state.data, inputValueInSearch);
+    }
+
     this.setState({
-      passwords: pass,
+      list: pass,
     });
   };
 
@@ -53,9 +93,31 @@ export default class Main extends Component {
     document.body.style.overflow = 'auto';
   };
 
+  getFilterData = selectedValue => {
+    const detectType = type => {
+      switch (type) {
+        case 'GenericNote':
+          return 'Nota';
+        case 'Nota':
+          return 'Nota';
+        case 'CreditCard':
+          return 'Cartão de crédito';
+        case 'Cartão de crédito':
+          return 'Cartão de crédito';
+        case 'Site':
+          return 'Site';
+        case 'Website':
+          return 'Site';
+        default:
+          return '';
+      }
+    };
+    this.handleSearch(detectType(selectedValue.value));
+  };
+
   getAllPassData = async () => {
     const pass = await api.get('pass');
-    return this.filteredItems(pass.data);
+    return pass.data;
   };
 
   // Metodo para paginar array de objetos
@@ -96,37 +158,103 @@ export default class Main extends Component {
     document.body.style.overflow = 'hidden';
   };
 
-  getDataHandler = () => {
+  getDataHandler = async () => {
     const pass = localStorage.getItem('pass');
+    const dt = localStorage.getItem('data');
 
-    if (pass) {
-      this.setState({ passwords: JSON.parse(pass) });
-      this.setState({ data: JSON.parse(pass) });
+    if (dt) {
+      if (pass) await this.setState({ list: JSON.parse(pass) });
+      if (dt) await this.setState({ data: JSON.parse(dt) });
+
+      if (this.state.scroll) {
+        const filteredData = await this.filteredItems(this.state.data);
+
+        if (this.state.page > 1) {
+          const data = await this.paginateArray(filteredData, this.state.page);
+          this.setState({
+            list: [...this.state.list, ...data.data],
+          });
+        } else {
+          const data = await this.paginateArray(filteredData, 1);
+          this.setState({
+            list: [...data.data],
+          });
+        }
+
+        this.setState({
+          paginateList: this.state.list,
+        });
+      }
     } else {
-      // this.getAllPassData().then(res => {
-      // const data = this.paginateArray(res);
-      //   const data = '';
-      //   this.setState({ passwords: data ? data.data : res });
-      //   this.setState({ data: data ? data.data : res });
-      // });
+      try {
+        const pass = api.get('pass');
+        pass.then(res => {
+          res = res.data;
+          const filteredData = this.filteredItems(res);
+          this.setState({ data: filteredData });
+
+          if (this.state.page > 1) {
+            const data = this.paginateArray(filteredData, this.state.page);
+            this.setState({
+              list: [...this.state.list, ...data.data],
+            });
+          } else {
+            const data = this.paginateArray(filteredData, 1);
+            this.setState({
+              list: [...data.data],
+            });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
+  loadMoreHandler() {
+    this.setState({ page: this.state.page + 1 });
+  }
+
+  handleScroll = () => {
+    if (this.hasReachedBottom()) {
+      this.loadMoreHandler();
+    }
+  };
+
+  hasReachedBottom() {
+    const distanceScrolledFromTop =
+      document.scrollingElement || document.documentElement;
+    return (
+      parseInt(
+        distanceScrolledFromTop.scrollTop + distanceScrolledFromTop.clientHeight
+      ) ===
+      distanceScrolledFromTop.scrollHeight - 1
+    );
+  }
+
   componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll, false);
     this.getDataHandler();
     document.body.style.overflow = 'auto';
   }
 
-  componentDidUpdate(_, prevState) {
-    const { passwords } = this.state;
-    console.log(
-      'TCL: Main -> componentDidUpdate -> PREVpasswords',
-      prevState.passwords
-    );
-    console.log('TCL: Main -> componentDidUpdate -> passwords', passwords);
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll, false);
+  }
 
-    if (prevState.passwords !== passwords) {
-      localStorage.setItem('pass', JSON.stringify(passwords));
+  componentDidUpdate(_, prevState) {
+    const { list, page, data } = this.state;
+
+    if (prevState.list !== list) {
+      localStorage.setItem('pass', JSON.stringify(list));
+    }
+
+    if (prevState.data !== data) {
+      localStorage.setItem('data', JSON.stringify(data));
+    }
+
+    if (prevState.page !== page) {
+      this.getDataHandler();
     }
   }
 
@@ -152,20 +280,20 @@ export default class Main extends Component {
           />
         )}
         <Header
-          title="PassTurbo"
+          title="Anota Fácil"
           getInputItemInFilter={this.handleSearch}
-          getCountMatchedItems={this.state.passwords.length}
+          getCountMatchedItems={this.state.list.length}
         />
         <div className="content">
-          <Filter />
+          <Filter getFilterData={this.getFilterData} />
           <Card
-            list={this.state.passwords}
+            list={this.state.list}
             newFN={this.newItem}
             editFN={this.editItem}
             update={this.getDataHandler}
           />
         </div>
-        <RoundButton action={this.newItem} />
+        {this.state.scroll && <RoundButton action={this.newItem} />}
       </>
     );
   }

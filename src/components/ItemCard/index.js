@@ -182,9 +182,9 @@ const ItemCard = props => {
   };
   const sendHandler = index => {
     if (isNew) {
-      localStorager.set('pass', data);
+      localStorager.set('data', data);
     } else {
-      localStorager.update('pass', index, data);
+      localStorager.update('data', index, data);
     }
     props.update();
     props.backButton(props.isNew);

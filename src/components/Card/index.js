@@ -68,7 +68,7 @@ export default class Card extends Component {
 
   eraseHandler = (e, i) => {
     e.stopPropagation();
-    localStorager.delete(i, 'pass');
+    localStorager.delete(i, 'data');
     this.props.update();
   };
 

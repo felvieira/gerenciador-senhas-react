@@ -113,7 +113,8 @@ export default createGlobalStyle`
   .header{
       width: 100%;
       position: fixed;
-      box-shadow: 0px 10px 10px rgba(0,0,0,.09)
+      box-shadow: 0px 10px 10px rgba(0,0,0,.09);
+      z-index:1;
   }
 
  .header-title {
@@ -181,21 +182,22 @@ export default createGlobalStyle`
       padding: 20px;
       background: #f4f4f4;
       height: 100%;
-      padding-top: 140px;
+      padding-top: 160px;
   }
 
  .filtro {
       display: flex;
       align-self: flex-end;
       margin: 0 0 10px;
-      color: #a9a29d
+      color: #a9a29d;
+      align-items: center;
   }
 
- .filtro>select {
-      background: 0 0;
-      border: 0;
-      cursor: pointer;
-      color: #a9a29d
+  .filtro > div {
+    min-width: 170px;
+    margin-left: 10px;
+    cursor:pointer;
+    
   }
 
  .roundButton {

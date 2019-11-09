@@ -17,7 +17,6 @@ export default {
   },
   get(key) {
     let value = localStorage.getItem(key);
-    // console.log('value: ', value);
     if (!value) {
       return;
     }

@@ -1,15 +1,37 @@
 import React from 'react';
+import Select from 'react-select';
 
-function Filter() {
-  return (
-    <div className="filtro">
-      Filtro:
-      <select name="" id="">
-        <option value="Todos">Todos</option>
-        <option value="Website">Website</option>
-      </select>
-    </div>
-  );
+const options = [
+  { value: 'all', label: 'Todos' },
+  { value: 'Website', label: 'Website' },
+  { value: 'GenericNote', label: 'Notas' },
+  { value: 'CreditCard', label: 'Cartão de Crédito' },
+];
+
+export default class Filter extends React.Component {
+  state = {
+    selectedOption: null,
+  };
+
+  handleChange = selectedOption => {
+    this.setState({ selectedOption }, () =>
+      this.props.getFilterData(selectedOption)
+    );
+  };
+
+  render() {
+    const { selectedOption } = this.state;
+
+    return (
+      <div className="filtro">
+        Filtro:
+        <Select
+          placeholder="Selecionar ..."
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={options}
+        />
+      </div>
+    );
+  }
 }
-
-export default Filter;
