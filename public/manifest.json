@@ -3,17 +3,17 @@
   "name": "Gerencia Fácil",
   "icons": [
     {
-      "src": "favicon.jpg",
+      "src": "favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/jpg"
     },
     {
-      "src": "logo221.jpg",
+      "src": "logo221.png",
       "type": "image/jpg",
       "sizes": "221x221"
     },
     {
-      "src": "logo443.jpg",
+      "src": "logo443.png",
       "type": "image/jpg",
       "sizes": "443x443"
     },
