@@ -16,6 +16,7 @@ export default class Header extends Component {
   render() {
     const haveFilter = this.props.getInputItemInFilter;
     const { title, modal } = this.props;
+    const style = {};
     return (
       <div className={modal ? 'header md' : 'header'}>
         {modal && (

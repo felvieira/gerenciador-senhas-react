@@ -114,7 +114,8 @@ export default createGlobalStyle`
       width: 100%;
       position: fixed;
       box-shadow: 0px 10px 10px rgba(0,0,0,.09);
-      z-index:1;
+      z-index: 1;
+
   }
 
  .header-title {
@@ -126,11 +127,14 @@ export default createGlobalStyle`
       color: #fff;
   }
 
+
+
   .header.md {
     display: flex;
     width: 100%;
     align-items: center;
     background: #e84a5f;
+
   }
 
    .header.md .header-title {
@@ -197,7 +201,7 @@ export default createGlobalStyle`
     min-width: 170px;
     margin-left: 10px;
     cursor:pointer;
-    
+
   }
 
  .roundButton {
@@ -275,7 +279,7 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     width: 100%;
   }
