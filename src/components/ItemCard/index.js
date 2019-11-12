@@ -23,6 +23,7 @@ const ItemCard = props => {
       password: '',
       cardNumber: '',
       cardType: '',
+      cardPass: '',
       nameOnCard: '',
       security_code: '',
       expires: '',
@@ -42,6 +43,7 @@ const ItemCard = props => {
     type: '',
     cardNumber: '',
     cardType: '',
+    cardPass: '',
     nameOnCard: '',
     security_code: '',
     expires: '',
@@ -125,6 +127,7 @@ const ItemCard = props => {
         notes,
         cardNumber,
         cardType,
+        cardPass,
         nameOnCard,
         security_code,
         expires,
@@ -142,6 +145,7 @@ const ItemCard = props => {
           type,
           cardNumber,
           cardType,
+          cardPass,
           nameOnCard,
           security_code,
           expires,
@@ -253,6 +257,7 @@ const ItemCard = props => {
         nameOnCard: card.nameOnCard,
         security_code: card.security_code,
         expires: card.expires,
+        cardPass: card.cardPass,
       },
     });
   }, [card]);
@@ -434,6 +439,18 @@ const ItemCard = props => {
                 type="text"
                 value={card.cardType}
                 name="cardType"
+                style={{ borderColor: color }}
+                onChange={event => inputChangedHandler(event)}
+              />
+            </div>
+            <div className="form-block">
+              <label htmlFor="" style={{ color }}>
+                SENHA PARA COMPRAS
+              </label>
+              <input
+                type="text"
+                value={card.cardPass}
+                name="cardPass"
                 style={{ borderColor: color }}
                 onChange={event => inputChangedHandler(event)}
               />
