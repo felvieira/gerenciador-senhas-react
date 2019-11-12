@@ -57,10 +57,18 @@ export default class Main extends Component {
   };
 
   searchItems = (pass, str) => {
+    str = str.toLowerCase();
+
     return pass.filter(item => {
-      if (item.name.includes(str)) return item;
-      if (item.type.includes(str)) return item;
-      if (item.login_url && item.login_url.includes(str)) return item;
+      if (item.name.toLowerCase().includes(str)) return item;
+      if (item.type.toLowerCase().includes(str)) return item;
+      if (item.login_url) {
+        if (
+          item.login_url.toLowerCase() &&
+          item.login_url.toLowerCase().includes(str)
+        )
+          return item;
+      }
     });
   };
 
