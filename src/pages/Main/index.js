@@ -29,7 +29,17 @@ export default class Main extends Component {
       'Website',
       'Site',
     ];
-    return pass.filter(item => types.includes(item.type));
+    const data = pass.filter(item => types.includes(item.type));
+    return this.orderByDate(data);
+  };
+
+  orderByDate = data => {
+    return data.sort((a, b) => {
+      a = new Date(a.date);
+      b = new Date(b.date);
+      if (a > b) return -1;
+      if (a < b) return 1;
+    });
   };
 
   repeteadNamedItems = pass => {
