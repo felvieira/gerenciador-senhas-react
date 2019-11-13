@@ -1,33 +1,55 @@
 import React, { Component } from 'react';
 
 export default class SearchBar extends Component {
-  state = {
-    inputValue: '',
-  };
-
   // Callback para pegar input e passar para o Parent
   handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
     if (e.target.value.length > 3) {
       this.props.getInputItemInFilter(e.target.value);
-    } else if (e.target.value.length === 3)
+    } else {
       this.props.getInputItemInFilter('all');
+    }
   };
 
+  componentWillReceiveProps(nextProps) {
+    // console.log('LOCAL', this.props.getCountMatchedItems.val);
+    // console.log('NEXT', nextProps.getCountMatchedItems.val);
+
+    if (
+      this.props.getCountMatchedItems.val &&
+      nextProps.getCountMatchedItems.val === ''
+    ) {
+      this.refs.searchInput.value = '';
+    }
+  }
+
+  componentDidMount() {
+    // console.log('DIDupdate', this.props.passInputValue);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // if (
+    //   this.props.getCountMatchedItems.val !== prevProps.getCountMatchedItems.val
+    // ) {
+    //   console.log('XXXXXXX');
+    // }
+    // console.log('TCL: componentDidUpdate -> prevProps', prevProps);
+  }
+
   render() {
-    const { inputValue } = this.state;
+    const { getCountMatchedItems } = this.props;
     return (
       <div className="search">
         <form action="">
           <input
             type="text"
+            ref="searchInput"
             name=""
             id=""
-            value={inputValue}
-            onChange={this.handleInputChange}
+            defaultValue={getCountMatchedItems.val}
+            onChange={e => this.handleInputChange(e)}
             placeholder="Procurar por senhas ..."
           />
-          <small>{this.props.getCountMatchedItems}</small>
+          <small>{getCountMatchedItems.length}</small>
         </form>
       </div>
     );

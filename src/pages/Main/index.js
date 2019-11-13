@@ -18,6 +18,7 @@ export default class Main extends Component {
     index: null,
     page: 1,
     scroll: true,
+    inputValue: '',
   };
 
   filteredItems = pass => {
@@ -89,10 +90,16 @@ export default class Main extends Component {
       this.setState({
         scroll: true,
       });
+      this.setState({
+        inputValue: '',
+      });
       pass = this.state.paginateList;
     } else {
       this.setState({
         scroll: false,
+      });
+      this.setState({
+        inputValue: inputValueInSearch,
       });
       pass = this.searchItems(this.state.data, inputValueInSearch);
     }
@@ -172,14 +179,22 @@ export default class Main extends Component {
     this.setState({ typeModal: item.type });
     this.setState({ itemSelected: item });
     this.setState({ index: i });
-
-    document.body.style.overflow = 'hidden';
   };
 
+  onUpdate(val) {
+    this.setState({
+      inputValue: val,
+    });
+  }
+
   getDataHandler = async () => {
+    console.log('chamou');
+
     const pass = localStorage.getItem('pass');
     const dt = localStorage.getItem('data');
-
+    if (this.state.inputValue) {
+      this.handleSearch('all');
+    }
     if (dt) {
       if (pass) await this.setState({ list: JSON.parse(pass) });
       if (dt) await this.setState({ data: JSON.parse(dt) });
@@ -250,6 +265,13 @@ export default class Main extends Component {
     );
   }
 
+  handleInput() {
+    return {
+      length: this.state.list.length,
+      val: this.state.inputValue,
+    };
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, false);
     this.getDataHandler();
@@ -261,7 +283,7 @@ export default class Main extends Component {
   }
 
   componentDidUpdate(_, prevState) {
-    const { list, page, data } = this.state;
+    const { list, page, data, inputValue } = this.state;
 
     if (prevState.list !== list) {
       localStorage.setItem('pass', JSON.stringify(list));
@@ -273,6 +295,10 @@ export default class Main extends Component {
 
     if (prevState.page !== page) {
       this.getDataHandler();
+    }
+
+    if (prevState.inputValue !== inputValue) {
+      if (inputValue === '') this.getDataHandler();
     }
   }
 
@@ -300,7 +326,7 @@ export default class Main extends Component {
         <Header
           title="Anota Fácil"
           getInputItemInFilter={this.handleSearch}
-          getCountMatchedItems={this.state.list.length}
+          getCountMatchedItems={this.handleInput()}
         />
         <div className="content">
           <Filter getFilterData={this.getFilterData} />
