@@ -1,3 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -17,6 +22,10 @@ const ItemCard = props => {
     date: '',
     type: '',
     login_url: '',
+    description: '',
+    dateReminder: '',
+    repeat: '',
+    reminder: '',
     identifiers: {
       notes: '',
       username: '',
@@ -28,6 +37,16 @@ const ItemCard = props => {
       security_code: '',
       expires: '',
     },
+  });
+
+  const [reminder, setReminder] = useState({
+    name: '',
+    date: '',
+    type: '',
+    description: '',
+    dateReminder: '',
+    repeat: '',
+    reminder: '',
   });
 
   const [note, setNote] = useState({
@@ -102,6 +121,12 @@ const ItemCard = props => {
           color: '#6155CC',
           nameType: 'Site',
         };
+      case 'Reminder':
+        return {
+          label: `${isNew ? 'Novo' : 'Editar'}  Lembrete`,
+          color: '#ffc931',
+          nameType: 'Reminder',
+        };
       default:
         return {
           label: `${isNew}`,
@@ -116,53 +141,80 @@ const ItemCard = props => {
   };
 
   const setPropsToStateMap = data => {
-    const {
-      name,
-      login_url,
-      date,
-      type,
-      identifiers: {
-        password,
-        username,
-        notes,
-        cardNumber,
-        cardType,
-        cardPass,
-        nameOnCard,
-        security_code,
-        expires,
-      },
-    } = data;
-
-    switch (typeOfCard) {
-      case 'Nota':
-        setNote({ name, date, type, notes });
-        break;
-      case 'Cartão de crédito':
-        setCard({
-          name,
-          date,
-          type,
+    if (data.identifiers) {
+      const {
+        name,
+        login_url,
+        date,
+        type,
+        identifiers: {
+          password,
+          username,
+          notes,
           cardNumber,
           cardType,
           cardPass,
           nameOnCard,
           security_code,
           expires,
-        });
-        break;
-      case 'Site':
-        setSite({
-          name,
-          date,
-          type,
-          login_url,
-          username,
-          password,
-        });
-        break;
-      default:
-        break;
+        },
+      } = data;
+      switch (typeOfCard) {
+        case 'Nota':
+          setNote({ name, date, type, notes });
+          break;
+        case 'Cartão de crédito':
+          setCard({
+            name,
+            date,
+            type,
+            cardNumber,
+            cardType,
+            cardPass,
+            nameOnCard,
+            security_code,
+            expires,
+          });
+          break;
+        case 'Site':
+          setSite({
+            name,
+            date,
+            type,
+            login_url,
+            username,
+            password,
+          });
+          break;
+        default:
+          break;
+      }
+    } else {
+      const {
+        name,
+        date,
+        type,
+        description,
+        dateReminder,
+        repeat,
+        reminder,
+      } = data;
+
+      switch (typeOfCard) {
+        case 'Reminder':
+          setReminder({
+            name,
+            date,
+            type,
+            description: '',
+            dateReminder: '',
+            repeat: '',
+            reminder: '',
+          });
+          break;
+        default:
+          break;
+      }
     }
   };
 
@@ -180,6 +232,8 @@ const ItemCard = props => {
         return 'Site';
       case 'Website':
         return 'Site';
+      case 'Reminder':
+        return 'Reminder';
       default:
         return '';
     }
@@ -219,6 +273,13 @@ const ItemCard = props => {
       case 'Site':
         setSite({
           ...site,
+          date: dt,
+          type: typeOfCard,
+          [e.target.name]: e.target.value,
+        });
+      case 'Reminder':
+        setReminder({
+          ...reminder,
           date: dt,
           type: typeOfCard,
           [e.target.name]: e.target.value,
@@ -285,6 +346,22 @@ const ItemCard = props => {
     });
   }, [site]);
 
+  useEffect(() => {
+    setData({
+      ...reminder,
+      id: `-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
+      name: reminder.name,
+      date: reminder.date,
+      type: reminder.type,
+      description: reminder.description,
+      dateReminder: reminder.dateReminder,
+      repeat: reminder.repeat,
+      reminder: reminder.reminder,
+    });
+  }, [reminder]);
+
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => console.log(data);
   const typeOfCard = detectType(type);
@@ -294,6 +371,73 @@ const ItemCard = props => {
     <div className="modal">
       <Header title={label} modal backButton={backButton} />
       <div className="content">
+        {nameType === 'Reminder' && (
+          <form>
+            <div className="form-block">
+              <label htmlFor="name" style={{ color }}>
+                NOME
+              </label>
+
+              <input
+                type="text"
+                value={reminder.name}
+                name="name"
+                style={{ borderColor: color }}
+                onChange={event => inputChangedHandler(event)}
+              />
+            </div>
+            <div className="form-block">
+              <label htmlFor="" style={{ color }}>
+                Descrição
+              </label>
+              <textarea
+                id=""
+                cols="30"
+                rows="10"
+                style={{ borderColor: color }}
+                value={reminder.description}
+                name="notes"
+                onChange={event => inputChangedHandler(event)}
+              />
+            </div>
+            <div className="form-block">
+              <label htmlFor="" style={{ color }}>
+                Data
+              </label>
+              <input
+                type="text"
+                value={reminder.dataReminder}
+                name=""
+                style={{ borderColor: color }}
+                onChange={event => inputChangedHandler(event)}
+              />
+            </div>
+            <div className="form-block">
+              <label htmlFor="" style={{ color }}>
+                O Evento é recorrente?
+              </label>
+              <input
+                type="text"
+                value={reminder.repeat}
+                name=""
+                style={{ borderColor: color }}
+                onChange={event => inputChangedHandler(event)}
+              />
+            </div>
+            <div className="form-block">
+              <label htmlFor="" style={{ color }}>
+                Me Lembrar
+              </label>
+              <input
+                type="text"
+                value={reminder.reminder}
+                name=""
+                style={{ borderColor: color }}
+                onChange={event => inputChangedHandler(event)}
+              />
+            </div>
+          </form>
+        )}
         {nameType === 'Nota' && (
           <form>
             <div className="form-block">

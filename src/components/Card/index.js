@@ -12,6 +12,8 @@ const switchType = type => {
       return 'Cartão de crédito';
     case 'Website':
       return 'Site';
+    case 'Reminder':
+      return 'Reminder';
     default:
       return type;
   }
@@ -55,6 +57,12 @@ const switchColor = type => {
         second: '#CEC9FF',
         third: '#D4D0CE',
       };
+    case 'Reminder':
+      return {
+        first: '#ffc931',
+        second: '#CEC9FF',
+        third: '#D4D0CE',
+      };
     default:
       return '#E84A5F';
   }
@@ -64,7 +72,6 @@ export default class Card extends Component {
   handleEdit = (e, item) => {
     e.stopPropagation();
     const dt = localStorager.get('data');
-    console.log('TCL: Card -> handleEdit -> dt', dt);
     const index = dt.findIndex(obj => obj.id == item.id);
     this.props.editFN(item, index);
   };

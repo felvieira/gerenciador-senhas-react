@@ -30,12 +30,11 @@ export default class Main extends Component {
       'Cartão de crédito',
       'Website',
       'Site',
+      'Reminder',
     ];
     const data = pass.filter(item => types.includes(item.type));
     const dataWithID = this.createID(data);
-    console.log('TCL: Main -> dataWithID', dataWithID);
     const dataWithOrder = this.orderByDate(dataWithID);
-    console.log('TCL: Main -> dataWithOrder', dataWithOrder);
 
     return dataWithOrder;
   };

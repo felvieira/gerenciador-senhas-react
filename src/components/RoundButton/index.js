@@ -33,6 +33,13 @@ export default class RoundButton extends Component {
             </button>
             <button
               type="submit"
+              style={{ backgroundColor: '#ffc931' }}
+              onClick={e => this.newItem(e, 'Reminder')}
+            >
+              Lembrete
+            </button>
+            <button
+              type="submit"
               style={{ backgroundColor: '#6155CC' }}
               onClick={e => this.newItem(e, 'Site')}
             >
