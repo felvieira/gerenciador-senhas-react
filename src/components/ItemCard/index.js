@@ -238,6 +238,9 @@ const ItemCard = props => {
   useEffect(() => {
     setData({
       ...data,
+      id: `-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
       name: note.name,
       date: note.date,
       type: note.type,
@@ -248,6 +251,9 @@ const ItemCard = props => {
   useEffect(() => {
     setData({
       ...data,
+      id: `-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
       name: card.name,
       date: card.date,
       type: card.type,
@@ -265,6 +271,9 @@ const ItemCard = props => {
   useEffect(() => {
     setData({
       ...site,
+      id: `-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`,
       name: site.name,
       date: site.date,
       type: site.type,

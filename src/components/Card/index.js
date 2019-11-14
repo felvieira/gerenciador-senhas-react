@@ -61,14 +61,19 @@ const switchColor = type => {
 };
 
 export default class Card extends Component {
-  handleEdit = (e, item, i) => {
+  handleEdit = (e, item) => {
     e.stopPropagation();
-    this.props.editFN(item, i);
+    const dt = localStorager.get('data');
+    console.log('TCL: Card -> handleEdit -> dt', dt);
+    const index = dt.findIndex(obj => obj.id == item.id);
+    this.props.editFN(item, index);
   };
 
-  eraseHandler = (e, i) => {
+  eraseHandler = (e, item) => {
     e.stopPropagation();
-    localStorager.delete(i, 'data');
+    const dt = localStorager.get('data');
+    const index = dt.findIndex(obj => obj.id == item.id);
+    localStorager.delete(index, 'data');
     this.props.update();
   };
 
@@ -84,7 +89,7 @@ export default class Card extends Component {
             <Type
               color={cor.first}
               style={{ cursor: 'pointer' }}
-              onClick={e => this.handleEdit(e, item, i)}
+              onClick={e => this.handleEdit(e, item)}
             >
               {item.type}
             </Type>
@@ -103,13 +108,13 @@ export default class Card extends Component {
             <Dates
               color={cor.third}
               style={{ cursor: 'pointer' }}
-              onClick={e => this.handleEdit(e, item, i)}
+              onClick={e => this.handleEdit(e, item)}
             >
               Atualizado em {item.date}
             </Dates>
           </div>
           <div className="card-erase">
-            <FaTrashAlt onClick={e => this.eraseHandler(e, i)} />
+            <FaTrashAlt onClick={e => this.eraseHandler(e, item)} />
           </div>
         </div>
       );

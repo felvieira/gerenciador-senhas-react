@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import RoundButton from '../../components/RoundButton';
 import api from '../../services/api';
 import ItemCard from '../../components/ItemCard';
+import moment from 'moment';
 
 export default class Main extends Component {
   state = {
@@ -31,16 +32,33 @@ export default class Main extends Component {
       'Site',
     ];
     const data = pass.filter(item => types.includes(item.type));
-    return this.orderByDate(data);
+    const dataWithID = this.createID(data);
+    console.log('TCL: Main -> dataWithID', dataWithID);
+    const dataWithOrder = this.orderByDate(dataWithID);
+    console.log('TCL: Main -> dataWithOrder', dataWithOrder);
+
+    return dataWithOrder;
+  };
+
+  createID = data => {
+    data.forEach((item, i) => {
+      if (!item.id) {
+        item.id = `-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
+      }
+    });
+    return data;
   };
 
   orderByDate = data => {
-    return data.sort((a, b) => {
-      a = new Date(a.date);
-      b = new Date(b.date);
+    data.sort((a, b) => {
+      a = moment(a.date, 'DD.MM.YYYY HH:mm:ss');
+      b = moment(b.date, 'DD.MM.YYYY HH:mm:ss');
       if (a > b) return -1;
       if (a < b) return 1;
     });
+    return data;
   };
 
   repeteadNamedItems = pass => {
@@ -188,13 +206,13 @@ export default class Main extends Component {
   }
 
   getDataHandler = async () => {
-    console.log('chamou');
-
     const pass = localStorage.getItem('pass');
     const dt = localStorage.getItem('data');
+
     if (this.state.inputValue) {
       this.handleSearch('all');
     }
+
     if (dt) {
       if (pass) await this.setState({ list: JSON.parse(pass) });
       if (dt) await this.setState({ data: JSON.parse(dt) });
