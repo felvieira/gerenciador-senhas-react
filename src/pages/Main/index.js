@@ -150,6 +150,8 @@ export default class Main extends Component {
           return 'Site';
         case 'Website':
           return 'Site';
+        case 'Reminder':
+          return 'Reminder';
         default:
           return '';
       }

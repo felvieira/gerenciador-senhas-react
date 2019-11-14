@@ -3,8 +3,9 @@ import Select from 'react-select';
 
 const options = [
   { value: 'all', label: 'Todos' },
-  { value: 'Website', label: 'Website' },
   { value: 'GenericNote', label: 'Notas' },
+  { value: 'Reminder', label: 'Lembrete' },
+  { value: 'Website', label: 'Website' },
   { value: 'CreditCard', label: 'Cartão de Crédito' },
 ];
 
