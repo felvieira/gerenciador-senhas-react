@@ -11,6 +11,9 @@ import { Colors } from './styles';
 import Header from '../Header';
 import localStorager from '../../services/storage';
 
+import DateTime from 'react-datetime';
+import '../../../node_modules/react-datetime/css/react-datetime.css';
+
 // import Cards from 'react-credit-cards';
 // https://github.com/amarofashion/react-credit-cards
 
@@ -206,10 +209,10 @@ const ItemCard = props => {
             name,
             date,
             type,
-            description: '',
-            dateReminder: '',
-            repeat: '',
-            reminder: '',
+            description,
+            dateReminder,
+            repeat,
+            reminder,
           });
           break;
         default:
@@ -249,6 +252,8 @@ const ItemCard = props => {
   };
 
   const inputChangedHandler = e => {
+    console.log('TCL: e', e);
+
     const dt = moment()
       .locale('pt-br')
       .format('DD/MM/YYYY HH:mm');
@@ -284,10 +289,23 @@ const ItemCard = props => {
           type: typeOfCard,
           [e.target.name]: e.target.value,
         });
+
         break;
       default:
         break;
     }
+  };
+
+  const inputDateTimeHandler = time => {
+    console.log('TCL: time', time);
+    setReminder({
+      ...reminder,
+      date: moment()
+        .locale('pt-br')
+        .format('DD/MM/YYYY HH:mm'),
+      type: 'Reminder',
+      dateReminder: time,
+    });
   };
 
   useEffect(() => {
@@ -396,7 +414,7 @@ const ItemCard = props => {
                 rows="10"
                 style={{ borderColor: color }}
                 value={reminder.description}
-                name="notes"
+                name="description"
                 onChange={event => inputChangedHandler(event)}
               />
             </div>
@@ -404,13 +422,18 @@ const ItemCard = props => {
               <label htmlFor="" style={{ color }}>
                 Data
               </label>
-              <input
+              <DateTime
+                inputProps={{ name: 'dateReminder' }}
+                onChange={date => inputDateTimeHandler(date)}
+                value={moment(reminder.dateReminder)}
+              />
+              {/* <input
                 type="text"
-                value={reminder.dataReminder}
+                value={reminder.dateReminder}
                 name=""
                 style={{ borderColor: color }}
                 onChange={event => inputChangedHandler(event)}
-              />
+              /> */}
             </div>
             <div className="form-block">
               <label htmlFor="" style={{ color }}>
@@ -419,7 +442,7 @@ const ItemCard = props => {
               <input
                 type="text"
                 value={reminder.repeat}
-                name=""
+                name="repeat"
                 style={{ borderColor: color }}
                 onChange={event => inputChangedHandler(event)}
               />
@@ -431,7 +454,7 @@ const ItemCard = props => {
               <input
                 type="text"
                 value={reminder.reminder}
-                name=""
+                name="reminder"
                 style={{ borderColor: color }}
                 onChange={event => inputChangedHandler(event)}
               />
