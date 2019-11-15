@@ -252,8 +252,6 @@ const ItemCard = props => {
   };
 
   const inputChangedHandler = e => {
-    console.log('TCL: e', e);
-
     const dt = moment()
       .locale('pt-br')
       .format('DD/MM/YYYY HH:mm');
@@ -297,7 +295,6 @@ const ItemCard = props => {
   };
 
   const inputDateTimeHandler = time => {
-    console.log('TCL: time', time);
     setReminder({
       ...reminder,
       date: moment()
@@ -427,13 +424,6 @@ const ItemCard = props => {
                 onChange={date => inputDateTimeHandler(date)}
                 value={moment(reminder.dateReminder)}
               />
-              {/* <input
-                type="text"
-                value={reminder.dateReminder}
-                name=""
-                style={{ borderColor: color }}
-                onChange={event => inputChangedHandler(event)}
-              /> */}
             </div>
             <div className="form-block">
               <label htmlFor="" style={{ color }}>

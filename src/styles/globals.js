@@ -333,4 +333,13 @@ export default createGlobalStyle`
     border-radius: 5px;
     padding: 10px;
   }
+
+  .form-block input{
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 10px;
+    width:100%;
+    border-color: #ffc931;
+  }
 `;
