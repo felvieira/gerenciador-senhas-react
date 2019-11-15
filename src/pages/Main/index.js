@@ -1,11 +1,56 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+import ContentLoader from 'react-content-loader';
 import Card from '../../components/Card';
 import Filter from '../../components/Filter';
 import Header from '../../components/Header';
 import RoundButton from '../../components/RoundButton';
 import api from '../../services/api';
 import ItemCard from '../../components/ItemCard';
-import moment from 'moment';
+
+const CardLoader = props => {
+  let height;
+  let width;
+  switch (props.screen) {
+    case 'mobile': {
+      height = '730';
+      width = '400';
+      break;
+    }
+    case 'desktop': {
+      height = '100';
+      width = '1060';
+      break;
+    }
+    case 'large-screen': {
+      height = '150';
+      width = '1920';
+      break;
+    }
+    default: {
+      height = '100';
+      width = '1060';
+      break;
+    }
+  }
+
+  return (
+    <ContentLoader
+      height={height}
+      width={width}
+      speed={2}
+      primaryColor="#f3f3f3"
+      secondaryColor="#ecebeb"
+      {...props}
+    >
+      {/* <rect x="245" y="21" rx="0" ry="0" width="165" height="49" /> */}
+      <rect x="10" y="10" rx="0" ry="0" width="400" height="109" />
+      <rect x="10" y="135" rx="0" ry="0" width="400" height="109" />
+      <rect x="10" y="255" rx="0" ry="0" width="400" height="109" />
+      <rect x="10" y="385" rx="0" ry="0" width="400" height="109" />
+    </ContentLoader>
+  );
+};
 
 export default class Main extends Component {
   state = {
@@ -20,6 +65,8 @@ export default class Main extends Component {
     page: 1,
     scroll: true,
     inputValue: '',
+    cardLoader: true,
+    timeoutLoader: 1300,
   };
 
   filteredItems = pass => {
@@ -102,6 +149,9 @@ export default class Main extends Component {
 
   // Método em callback para pegar input do Children
   handleSearch = inputValueInSearch => {
+    this.setState({
+      cardLoader: true,
+    });
     let pass = '';
     if (inputValueInSearch === 'all') {
       this.setState({
@@ -124,6 +174,11 @@ export default class Main extends Component {
     this.setState({
       list: pass,
     });
+    setTimeout(() => {
+      this.setState({
+        cardLoader: false,
+      });
+    }, this.state.timeoutLoader);
   };
 
   backButton = isNew => {
@@ -261,6 +316,12 @@ export default class Main extends Component {
         console.log(error);
       }
     }
+
+    setTimeout(() => {
+      this.setState({
+        cardLoader: false,
+      });
+    }, this.state.timeoutLoader);
   };
 
   loadMoreHandler() {
@@ -349,12 +410,15 @@ export default class Main extends Component {
         />
         <div className="content">
           <Filter getFilterData={this.getFilterData} />
-          <Card
-            list={this.state.list}
-            newFN={this.newItem}
-            editFN={this.editItem}
-            update={this.getDataHandler}
-          />
+          {this.state.cardLoader && <CardLoader screen="mobile" />}
+          {!this.state.cardLoader && (
+            <Card
+              list={this.state.list}
+              newFN={this.newItem}
+              editFN={this.editItem}
+              update={this.getDataHandler}
+            />
+          )}
         </div>
         {this.state.scroll && <RoundButton action={this.newItem} />}
       </>

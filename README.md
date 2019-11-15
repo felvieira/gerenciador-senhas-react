@@ -12,6 +12,9 @@ Features
 Modo de Backup
 Modo de importaçao formato PasswordBoss
 Modo de importaçao formato Google Chrome
-Nova nota Lembrete com data e aviso por push
+
+<!-- Nova nota Lembrete com data e aviso por push -->
+
+Aviso Push
 Fazer loading das telas
 Nova nota conta banco
