@@ -346,6 +346,13 @@ export default class Main extends Component {
   }
 
   handleInput() {
+    if (this.state.cardLoader) {
+      return {
+        length: false,
+        val: this.state.inputValue,
+      };
+    } 
+    
     return {
       length: this.state.list.length,
       val: this.state.inputValue,

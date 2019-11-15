@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Loading from 'react-circular-loading';
+import '../../styles/mini-loader.css';
 
 export default class SearchBar extends Component {
   // Callback para pegar input e passar para o Parent
@@ -27,11 +29,12 @@ export default class SearchBar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // if (
-    //   this.props.getCountMatchedItems.val !== prevProps.getCountMatchedItems.val
-    // ) {
-    //   console.log('XXXXXXX');
-    // }
+    if (
+      this.props.getCountMatchedItems.val !== prevProps.getCountMatchedItems.val
+    ) {
+      // console.log('XXXXXXX');
+    }
+
     // console.log('TCL: componentDidUpdate -> prevProps', prevProps);
   }
 
@@ -49,7 +52,12 @@ export default class SearchBar extends Component {
             onChange={e => this.handleInputChange(e)}
             placeholder="Procurar por senhas ..."
           />
-          <small>{getCountMatchedItems.length}</small>
+          <small>
+            {getCountMatchedItems.length === false && (
+              <Loading size="x-small" />
+            )}
+            {getCountMatchedItems.length >= 0 && getCountMatchedItems.length}
+          </small>
         </form>
       </div>
     );
