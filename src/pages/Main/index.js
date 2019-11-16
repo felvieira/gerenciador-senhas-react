@@ -78,6 +78,7 @@ export default class Main extends Component {
       'Website',
       'Site',
       'Reminder',
+      'Lembrete',
     ];
     const data = pass.filter(item => types.includes(item.type));
     const dataWithID = this.createID(data);
@@ -206,7 +207,9 @@ export default class Main extends Component {
         case 'Website':
           return 'Site';
         case 'Reminder':
-          return 'Reminder';
+          return 'Lembrete';
+        case 'Lembrete':
+          return 'Lembrete';
         default:
           return '';
       }
@@ -351,8 +354,8 @@ export default class Main extends Component {
         length: false,
         val: this.state.inputValue,
       };
-    } 
-    
+    }
+
     return {
       length: this.state.list.length,
       val: this.state.inputValue,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { FaTrashAlt } from 'react-icons/fa';
-import { Type, Name, Dates, Site, Colors } from './styles';
+import { Type, Name, Dates, Site, Colors, User } from './styles';
 import localStorager from '../../services/storage';
 
 const switchType = type => {
@@ -13,7 +13,7 @@ const switchType = type => {
     case 'Website':
       return 'Site';
     case 'Reminder':
-      return 'Reminder';
+      return 'Lembrete';
     default:
       return type;
   }
@@ -60,7 +60,13 @@ const switchColor = type => {
     case 'Reminder':
       return {
         first: '#ffc931',
-        second: '#CEC9FF',
+        second: '#ffe18e',
+        third: '#D4D0CE',
+      };
+    case 'Lembrete':
+      return {
+        first: '#ffc931',
+        second: '#ffe18e',
         third: '#D4D0CE',
       };
     default:
@@ -100,9 +106,23 @@ export default class Card extends Component {
             >
               {item.type}
             </Type>
-            <Name color={cor.second}>{item.name}</Name>
+            <Name color={cor.second}>
+              {item.type === 'Lembrete' && `${item.name} - ${item.date}`}
+              {item.type === 'Nota' && item.name}
+              {item.type === 'Cartão de crédito' &&
+                `${item.name} - ${item.identifiers.cardNumber}`}
+              {item.type === 'Site' && item.name}
+            </Name>
+
+            {item.type === 'Site' && (
+              <User>
+                <b>Usuário: </b>
+                {item.identifiers ? item.identifiers.username : item.username}
+              </User>
+            )}
+
             {item.login_url && (
-              <Site>
+              <Site color={cor.first}>
                 <a
                   href={item.login_url}
                   rel="noopener noreferrer"
@@ -112,6 +132,7 @@ export default class Card extends Component {
                 </a>
               </Site>
             )}
+
             <Dates
               color={cor.third}
               style={{ cursor: 'pointer' }}

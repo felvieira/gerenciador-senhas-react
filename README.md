@@ -16,5 +16,7 @@ Modo de importaçao formato Google Chrome
 <!-- Nova nota Lembrete com data e aviso por push -->
 
 Aviso Push
-Fazer loading das telas
+
+<!-- Fazer loading das telas -->
+
 Nova nota conta banco

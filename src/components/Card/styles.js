@@ -30,12 +30,20 @@ export const Dates = styled.div`
 `;
 
 export const Site = styled.div`
-  color: #8f8f8f;
+  color: ${props => props.color};
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
+`;
+export const User = styled.div`
+  color: #ff9f90;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
 `;
 
 export const Colors = styled.div`

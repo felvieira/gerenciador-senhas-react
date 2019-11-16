@@ -7,11 +7,11 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import useForm from 'react-hook-form';
+import DateTime from 'react-datetime';
 import { Colors } from './styles';
 import Header from '../Header';
 import localStorager from '../../services/storage';
 
-import DateTime from 'react-datetime';
 import '../../../node_modules/react-datetime/css/react-datetime.css';
 
 // import Cards from 'react-credit-cards';
@@ -128,7 +128,13 @@ const ItemCard = props => {
         return {
           label: `${isNew ? 'Novo' : 'Editar'}  Lembrete`,
           color: '#ffc931',
-          nameType: 'Reminder',
+          nameType: 'Lembrete',
+        };
+      case 'Lembrete':
+        return {
+          label: `${isNew ? 'Novo' : 'Editar'}  Lembrete`,
+          color: '#ffc931',
+          nameType: 'Lembrete',
         };
       default:
         return {
@@ -188,7 +194,6 @@ const ItemCard = props => {
             username,
             password,
           });
-          break;
         default:
           break;
       }
@@ -201,10 +206,13 @@ const ItemCard = props => {
         dateReminder,
         repeat,
         reminder,
+        login_url,
+        username,
+        password,
       } = data;
 
       switch (typeOfCard) {
-        case 'Reminder':
+        case 'Lembrete':
           setReminder({
             name,
             date,
@@ -215,6 +223,17 @@ const ItemCard = props => {
             reminder,
           });
           break;
+        case 'Site':
+          setSite({
+            name,
+            date,
+            type,
+            login_url,
+            username,
+            password,
+          });
+          break;
+
         default:
           break;
       }
@@ -236,7 +255,9 @@ const ItemCard = props => {
       case 'Website':
         return 'Site';
       case 'Reminder':
-        return 'Reminder';
+        return 'Lembrete';
+      case 'Lembrete':
+        return 'Lembrete';
       default:
         return '';
     }
@@ -280,7 +301,7 @@ const ItemCard = props => {
           type: typeOfCard,
           [e.target.name]: e.target.value,
         });
-      case 'Reminder':
+      case 'Lembrete':
         setReminder({
           ...reminder,
           date: dt,
@@ -300,7 +321,7 @@ const ItemCard = props => {
       date: moment()
         .locale('pt-br')
         .format('DD/MM/YYYY HH:mm'),
-      type: 'Reminder',
+      type: 'Lembrete',
       dateReminder: time,
     });
   };
@@ -386,7 +407,7 @@ const ItemCard = props => {
     <div className="modal">
       <Header title={label} modal backButton={backButton} />
       <div className="content">
-        {nameType === 'Reminder' && (
+        {nameType === 'Lembrete' && (
           <form>
             <div className="form-block">
               <label htmlFor="name" style={{ color }}>
