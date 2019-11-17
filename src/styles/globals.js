@@ -354,7 +354,7 @@ export default createGlobalStyle`
   }
 
   .modal > .content {
-    padding-top: 85px;
+    /* padding-top: 85px; */
     overflow-y: scroll;
   }
 
