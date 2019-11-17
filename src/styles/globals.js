@@ -376,8 +376,10 @@ export default createGlobalStyle`
       flex-direction: column;
   }
 
-  label{
-    min-height:42px;
+  label, input, textarea {
+      min-height: 42px!important;
+      width: 100%!important;
+      display: block!important;
   }
 
   .modal  label{
