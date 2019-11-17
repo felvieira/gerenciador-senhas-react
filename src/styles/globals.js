@@ -112,10 +112,10 @@ export default createGlobalStyle`
   };
  .root {
     display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE */
+    display: -webkit-flex; /* Chrome & Safari */
+    display: flex;
     flex-direction: column;
     height: 100vh
   }
@@ -141,10 +141,10 @@ display: flex;
 
   .header.md {
     display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE */
+    display: -webkit-flex; /* Chrome & Safari */
+    display: flex;
     width: 100%;
     align-items: center;
     background: #e84a5f;
@@ -157,10 +157,10 @@ display: flex;
 
    .header.md .header-back {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       cursor: pointer;
       font-size: 2em;
       color: white;
@@ -176,19 +176,19 @@ display: flex;
 
   .search > form {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
   }
 
   .search > form > small {
       position: relative;
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       align-content: center;
       align-items: center;
       padding: 0px 20px;
@@ -208,10 +208,10 @@ display: flex;
 
  .content {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       flex-direction: column;
       padding: 20px;
       background: #f4f4f4;
@@ -221,10 +221,10 @@ display: flex;
 
  .filtro {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       align-self: flex-end;
       margin: 0 0 10px;
       color: #a9a29d;
@@ -252,10 +252,10 @@ display: flex;
     display: block;
     cursor: pointer;
     display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE */
+    display: -webkit-flex; /* Chrome & Safari */
+    display: flex;
     flex-direction: column;
   }
 
@@ -275,10 +275,10 @@ display: flex;
       background: #fff;
       overflow: hidden;
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       box-shadow: 0 4px 4px rgba(0,0,0,.05);
       margin-bottom:10px;
       min-height: 80px;
@@ -296,20 +296,20 @@ display: flex;
 
 .card-erase {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       margin: 10px;
       cursor: pointer
   }
 
 .card-content {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       flex: auto;
       flex-direction: column;
       padding: 15px
@@ -323,18 +323,18 @@ display: flex;
     color: #fff;
     border: 0;
     display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE */
+    display: -webkit-flex; /* Chrome & Safari */
+    display: flex;
   }
 
 .modal {
     display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE */
+    display: -webkit-flex; /* Chrome & Safari */
+    display: flex;
     flex-direction: column;
     height: 100vh;
     z-index: 2;
@@ -360,20 +360,24 @@ display: flex;
 
   .modal > .content > form {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       flex-direction: column;
   }
 
   .modal > .content > form > div {
       display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+      display: -moz-box; /* Firefox */
+      display: -ms-flexbox; /* IE */
+      display: -webkit-flex; /* Chrome & Safari */
+      display: flex;
       flex-direction: column;
+  }
+
+  label{
+    min-height:42px;
   }
 
   .modal  label{
@@ -383,10 +387,10 @@ display: flex;
     font-size: 16px;
     line-height: 42px;
     display: -webkit-box; /* Really old */
-display: -moz-box; /* Firefox */
-display: -ms-flexbox; /* IE */
-display: -webkit-flex; /* Chrome & Safari */
-display: flex;
+    display: -moz-box; /* Firefox */
+    display: -ms-flexbox; /* IE */
+    display: -webkit-flex; /* Chrome & Safari */
+    display: flex;
     align-items: center;
     text-transform: uppercase;
   }
