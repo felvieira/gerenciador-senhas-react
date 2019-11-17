@@ -215,7 +215,7 @@ export default createGlobalStyle`
       flex-direction: column;
       padding: 20px;
       background: #f4f4f4;
-      height: auto;
+      height: 100%;
       padding-top: 160px;
   }
 
@@ -354,7 +354,7 @@ export default createGlobalStyle`
   }
 
   .modal > .content {
-    /* padding-top: 85px; */
+    padding-top: 85px;
     overflow-y: scroll;
   }
 
@@ -374,12 +374,6 @@ export default createGlobalStyle`
       display: -webkit-flex; /* Chrome & Safari */
       display: flex;
       flex-direction: column;
-  }
-
-  label, input, textarea {
-      min-height: 42px!important;
-      width: 100%!important;
-      display: block!important;
   }
 
   .modal  label{
