@@ -20,7 +20,7 @@
     "react-scripts": "3.1.2",
     "react-select": "^3.0.8",
     "styled-components": "^4.4.0",
-    "react-circular-loader": "^2.0.1"
+    "react-circular-loading": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
