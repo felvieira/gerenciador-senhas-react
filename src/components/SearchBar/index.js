@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Loading from 'react-circular-loading';
-import '../../styles/mini-loader.css';
+import MiniLoader from '../MiniLoader/index';
 
 export default class SearchBar extends Component {
   // Callback para pegar input e passar para o Parent
@@ -52,12 +51,13 @@ export default class SearchBar extends Component {
             onChange={e => this.handleInputChange(e)}
             placeholder="Procurar por senhas ..."
           />
-          <small>
-            {getCountMatchedItems.length === false && (
-              <Loading size="x-small" />
-            )}
-            {getCountMatchedItems.length >= 0 && getCountMatchedItems.length}
-          </small>
+          {getCountMatchedItems.length === false ? (
+            <small>
+              <MiniLoader size="x-small" />
+            </small>
+          ) : (
+            <small>{getCountMatchedItems.length}</small>
+          )}
         </form>
       </div>
     );

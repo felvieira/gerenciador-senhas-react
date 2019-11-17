@@ -245,6 +245,7 @@ export default class Main extends Component {
   };
 
   newItem = type => {
+    console.log('TCL: Main -> type', type);
     this.setState({ showNew: true });
     this.setState({ typeModal: type });
     this.setState({ itemSelected: null });
