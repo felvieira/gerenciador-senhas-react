@@ -8,6 +8,12 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  -webkit-box-flex: 1 0 auto;
+  -moz-box-flex:  1 0 auto;
+  -webkit-flex:  1 0 auto;
+  -ms-flex:  1 0 auto;
+  flex:  1 0 auto;
+
   /* Remove default padding */
   ul[class],
   ol[class] {
@@ -98,14 +104,18 @@ export default createGlobalStyle`
     color: #222;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-  }
+  };
+
 
   button {
     cursor: pointer;
-  }
-
+  };
  .root {
-    display: flex;
+    display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
     flex-direction: column;
     height: 100vh
   }
@@ -130,7 +140,11 @@ export default createGlobalStyle`
 
 
   .header.md {
-    display: flex;
+    display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
     width: 100%;
     align-items: center;
     background: #e84a5f;
@@ -142,7 +156,11 @@ export default createGlobalStyle`
   }
 
    .header.md .header-back {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       cursor: pointer;
       font-size: 2em;
       color: white;
@@ -157,12 +175,20 @@ export default createGlobalStyle`
   }
 
   .search > form {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
   }
 
   .search > form > small {
       position: relative;
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       align-content: center;
       align-items: center;
       padding: 0px 20px;
@@ -181,7 +207,11 @@ export default createGlobalStyle`
   }
 
  .content {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       flex-direction: column;
       padding: 20px;
       background: #f4f4f4;
@@ -190,7 +220,11 @@ export default createGlobalStyle`
   }
 
  .filtro {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       align-self: flex-end;
       margin: 0 0 10px;
       color: #a9a29d;
@@ -217,7 +251,11 @@ export default createGlobalStyle`
     right: 25px;
     display: block;
     cursor: pointer;
-    display: flex;
+    display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
     flex-direction: column;
   }
 
@@ -236,7 +274,11 @@ export default createGlobalStyle`
       border-radius: 10px;
       background: #fff;
       overflow: hidden;
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       box-shadow: 0 4px 4px rgba(0,0,0,.05);
       margin-bottom:10px;
       min-height: 80px;
@@ -253,13 +295,21 @@ export default createGlobalStyle`
   }
 
 .card-erase {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       margin: 10px;
       cursor: pointer
   }
 
 .card-content {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       flex: auto;
       flex-direction: column;
       padding: 15px
@@ -272,11 +322,19 @@ export default createGlobalStyle`
     font-size: 2.3em;
     color: #fff;
     border: 0;
-    display: flex;
+    display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
   }
 
 .modal {
-    display: flex;
+    display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
     flex-direction: column;
     height: 100vh;
     z-index: 2;
@@ -301,12 +359,20 @@ export default createGlobalStyle`
   }
 
   .modal > .content > form {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       flex-direction: column;
   }
 
   .modal > .content > form > div {
-      display: flex;
+      display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
       flex-direction: column;
   }
 
@@ -316,7 +382,11 @@ export default createGlobalStyle`
     font-weight: bold;
     font-size: 16px;
     line-height: 42px;
-    display: flex;
+    display: -webkit-box; /* Really old */
+display: -moz-box; /* Firefox */
+display: -ms-flexbox; /* IE */
+display: -webkit-flex; /* Chrome & Safari */
+display: flex;
     align-items: center;
     text-transform: uppercase;
   }
