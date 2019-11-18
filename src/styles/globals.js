@@ -8,12 +8,6 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  -webkit-box-flex: 1 0 auto;
-  -moz-box-flex:  1 0 auto;
-  -webkit-flex:  1 0 auto;
-  -ms-flex:  1 0 auto;
-  flex:  1 0 auto;
-
   /* Remove default padding */
   ul[class],
   ol[class] {
@@ -411,6 +405,49 @@ export default createGlobalStyle`
     padding: 10px;
     width:100%;
     border-color: #ffc931;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+  }
+
+  .focus:before{
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 0;
+      pointer-events: none;
+  }
+
+  .rdtPicker {
+      width: 100%!important;
   }
 
 `;
