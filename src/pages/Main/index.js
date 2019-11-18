@@ -39,7 +39,7 @@ const CardLoader = props => {
       height={height}
       width={width}
       speed={2}
-      primaryColor="#f3f3f3"
+      primaryColor="#e3e1e1"
       secondaryColor="#ecebeb"
       {...props}
     >
