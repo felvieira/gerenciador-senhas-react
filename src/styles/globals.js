@@ -412,4 +412,38 @@ export default createGlobalStyle`
     width:100%;
     border-color: #ffc931;
   }
+
+  .form-block {
+    /* display: block; */
+    -ms-flex-preferred-size: 0;
+    /* flex-basis: 0; */
+    -ms-flex-positive: 1;
+    /* flex-grow: 1; */
+    -ms-flex-negative: 1;
+    /* flex-shrink: 1; */
+}
+
+form {
+    display: block;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+}
+
+.form-block {
+    box-sizing: border-box;
+    clear: both;
+    font-size: 1rem;
+    position: relative;
+    text-align: left;
+}
+
+textarea, input {
+    max-width: 100%;
+    width: 100%;
+    transition: all 0.8s;
+}
 `;
