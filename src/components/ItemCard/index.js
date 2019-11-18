@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 import useForm from 'react-hook-form';
 import DateTime from 'react-datetime';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 import { Colors } from './styles';
 import Header from '../Header';
 import localStorager from '../../services/storage';
@@ -408,69 +409,40 @@ const ItemCard = props => {
       <Header title={label} modal backButton={backButton} />
       <div className="content">
         {nameType === 'Lembrete' && (
-          <form>
-            <div className="form-block">
-              <label htmlFor="name" style={{ color }}>
-                NOME
-              </label>
-
-              <input
-                type="text"
-                value={reminder.name}
-                name="name"
-                style={{ borderColor: color }}
-                onChange={event => inputChangedHandler(event)}
-              />
-            </div>
-            <div className="form-block">
-              <label htmlFor="" style={{ color }}>
-                Descrição
-              </label>
-              <textarea
-                id=""
-                cols="30"
-                rows="10"
-                style={{ borderColor: color }}
-                value={reminder.description}
-                name="description"
-                onChange={event => inputChangedHandler(event)}
-              />
-            </div>
-            <div className="form-block">
-              <label htmlFor="" style={{ color }}>
-                Data
-              </label>
-              <DateTime
-                inputProps={{ name: 'dateReminder' }}
-                onChange={date => inputDateTimeHandler(date)}
-                value={moment(reminder.dateReminder)}
-              />
-            </div>
-            <div className="form-block">
-              <label htmlFor="" style={{ color }}>
-                O Evento é recorrente?
-              </label>
-              <input
-                type="text"
-                value={reminder.repeat}
-                name="repeat"
-                style={{ borderColor: color }}
-                onChange={event => inputChangedHandler(event)}
-              />
-            </div>
-            <div className="form-block">
-              <label htmlFor="" style={{ color }}>
-                Me Lembrar
-              </label>
-              <input
-                type="text"
-                value={reminder.reminder}
-                name="reminder"
-                style={{ borderColor: color }}
-                onChange={event => inputChangedHandler(event)}
-              />
-            </div>
-          </form>
+          <Form>
+            <Form.Field>
+              <label>First Name</label>
+              <input placeholder="First Name" />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder="Last Name" />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder="Last Name" />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder="Last Name" />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder="Last Name" />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder="Last Name" />
+            </Form.Field>
+            <Form.Field>
+              <label>Last Name</label>
+              <input placeholder="Last Name" />
+            </Form.Field>
+            <Form.Field>
+              <Checkbox label="I agree to the Terms and Conditions" />
+            </Form.Field>
+            <Button type="submit">Submit</Button>
+          </Form>
         )}
         {nameType === 'Nota' && (
           <form>
