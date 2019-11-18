@@ -434,6 +434,10 @@ export default createGlobalStyle`
       width: 100%;
   }
 
+  label {
+    padding: 10px 0 5px;
+  }
+
   .focus:before{
       content: "";
       position: fixed;
