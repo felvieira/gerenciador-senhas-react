@@ -8,6 +8,7 @@ Bugs
 Input ao clicar no mobile ele estreita os inputs, no focus ele abre o teclado espreme os labels. Tentar verificar com o cel plugado no pc. Tentar esconder o botao qdo ele aparece pra ver se arruma
 Clicar na data fica escondido no mobile, talvez fazer um modal com ele centralizado
 colorir lixeiras, ou mudar a cor de todas
+Qdo nos filtros ele esta carregando mais ao puxar pra baixo o scroll
 
 <!-- Nova nota Lembrete com data e aviso por push -->
 <!-- Fazer loading das telas -->

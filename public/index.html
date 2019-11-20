@@ -30,5 +30,17 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "220978c0-6406-46b8-88bf-5553ae66e3f8",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
+</script>
   </body>
 </html>
