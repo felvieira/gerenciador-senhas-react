@@ -50,6 +50,10 @@
           },
         });
         OneSignal.showNativePrompt();
+        OneSignal.getUserId(function(id){
+          localStorage.setItem('OSid',id)
+          console.log(id)
+        });
       });
     </script>
   </body>
