@@ -30,17 +30,27 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script>
-  var OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "220978c0-6406-46b8-88bf-5553ae66e3f8",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-</script>
+    <script
+      src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+      async=""
+    ></script>
+    <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: '220978c0-6406-46b8-88bf-5553ae66e3f8',
+          autoResubscribe: true,
+          notifyButton: {
+            enable: true,
+          },
+          welcomeNotification: {
+            title: 'Obrigado pela Inscrição',
+            message: 'Agora iremos te avisar sobre seus lembretes!',
+            // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+          },
+        });
+        OneSignal.showNativePrompt();
+      });
+    </script>
   </body>
 </html>
