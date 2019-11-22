@@ -8,14 +8,15 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 import useForm from 'react-hook-form';
 import DateTime from 'react-datetime';
-import { Colors } from './styles';
+import { Button } from './styles';
 import Header from '../Header';
 import localStorager from '../../services/storage';
 
 import '../../../node_modules/react-datetime/css/react-datetime.css';
 
 // import Cards from 'react-credit-cards';
-// https://github.com/amarofashion/react-credit-cards
+import { axios } from 'axios';
+// github.com/amarofashion/react-credit-cards
 
 const ItemCard = props => {
   const { type, isNew, index } = props;
@@ -195,6 +196,8 @@ const ItemCard = props => {
             username,
             password,
           });
+          break;
+
         default:
           break;
       }
@@ -270,6 +273,7 @@ const ItemCard = props => {
       localStorager.update('data', index, data);
     }
     props.update();
+    if (type === 'Lembrete') reminderDateWebPush();
     props.backButton(props.isNew);
   };
 
@@ -302,6 +306,8 @@ const ItemCard = props => {
           type: typeOfCard,
           [e.target.name]: e.target.value,
         });
+        break;
+
       case 'Lembrete':
         setReminder({
           ...reminder,
@@ -314,6 +320,88 @@ const ItemCard = props => {
       default:
         break;
     }
+  };
+
+  const reminderDateWebPush = () => {
+    const getBookedDate = reminder.dateReminder;
+    console.log('TCL: reminderDateWebPush -> getBookedDate', getBookedDate);
+    const getDeviceIDOneSignal = localStorager.get('OSid');
+    console.log(
+      'TCL: reminderDateWebPush -> getDeviceIDOneSignal',
+      getDeviceIDOneSignal
+    );
+    const dateTime = returnDateToNotify(getBookedDate, 1, 'minutes', 'add');
+    updateWebNotification(
+      '220978c0-6406-46b8-88bf-5553ae66e3f8',
+      'ODM5MzJjYjEtMDdhMi00NDQwLTg4YjItNzUxOTJjNGRhZGY3',
+      [getDeviceIDOneSignal],
+      dateTime
+    );
+  };
+
+  const reminderDateUpdateWebPush = () => {
+    // const getBookedDate = reminder.dateReminder;
+    // const getDeviceIDOneSignal = localStorager.get('OSid');
+    // localStorager;
+    // removeWebNotification();
+    // updateWebNotification();
+  };
+
+  const returnDateToNotify = (
+    dateBooked,
+    quantity = 1,
+    period = 'days',
+    type = 'subtract',
+    locale
+  ) => {
+    const oldDate = new Date(dateBooked);
+    let newDate;
+    type === 'add'
+      ? (newDate = moment(oldDate).add(quantity, period))
+      : (newDate = moment(oldDate).subtract(quantity, period));
+    if (locale === 'pt-br') {
+      return newDate.locale('pt-br').format('DD/MM/YYYY HH:mm');
+    }
+    console.log('TCL: newDate._d', newDate._d);
+    return newDate._d;
+  };
+
+  const updateWebNotification = (
+    appID,
+    authID,
+    senderID,
+    dateTime,
+    data = { foo: 'bar' },
+    contents = { en: 'English Message' }
+  ) => {
+    axios
+      .post(
+        'https://onesignal.com/api/v1/notifications',
+        {
+          app_id: appID,
+          include_player_ids: senderID,
+          data,
+          contents,
+          send_after: dateTime,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: authID,
+          },
+        }
+      )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const removeWebNotification = e => {
+    // const getBookedDate =;
+    // const getDeviceIDOneSignal =;
   };
 
   const inputDateTimeHandler = time => {
@@ -656,9 +744,9 @@ const ItemCard = props => {
         )}
       </div>
       <div className="footer">
-        <Colors color={color} onClick={e => sendHandler(index)}>
+        <Button color={color} onClick={e => sendHandler(index)}>
           {isNew ? 'CADASTRAR' : 'EDITAR'}
-        </Colors>
+        </Button>
       </div>
     </div>
   );

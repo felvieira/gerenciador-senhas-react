@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const Colors = styled.button`
+export const Button = styled.button`
   background: ${props => props.color};
 `;
