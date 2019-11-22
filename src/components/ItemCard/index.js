@@ -347,7 +347,7 @@ const ItemCard = props => {
       'ODM5MzJjYjEtMDdhMi00NDQwLTg4YjItNzUxOTJjNGRhZGY3',
       [getDeviceIDOneSignal],
       dateTime,
-      { dt: message }
+      { en: message }
     );
   };
 
