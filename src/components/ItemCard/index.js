@@ -510,6 +510,7 @@ const ItemCard = props => {
   const onSubmit = data => console.log(data);
   const typeOfCard = detectType(type);
   const { label, color, nameType } = getTypeNameColor();
+  const classFocus = getClass();
 
   return (
     <div className="modal">
@@ -544,7 +545,7 @@ const ItemCard = props => {
                 onChange={event => inputChangedHandler(event)}
               />
             </div>
-            <div className={getClass()}>
+            <div className={classFocus}>
               <label htmlFor="" style={{ color }}>
                 Data
               </label>
@@ -552,8 +553,8 @@ const ItemCard = props => {
                 inputProps={{ name: 'dateReminder' }}
                 onChange={date => inputDateTimeHandler(date)}
                 value={moment(reminder.dateReminder)}
-                onFocus={() => setData({ focus: true })}
-                onBlur={() => setData({ focus: false })}
+                // onFocus={() => setData({ focus: true })}
+                // onBlur={() => setData({ focus: false })}
               />
             </div>
             <div className="form-block">
