@@ -4,6 +4,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 import useForm from 'react-hook-form';
@@ -15,7 +16,6 @@ import localStorager from '../../services/storage';
 import '../../../node_modules/react-datetime/css/react-datetime.css';
 
 // import Cards from 'react-credit-cards';
-import { axios } from 'axios';
 // github.com/amarofashion/react-credit-cards
 
 const ItemCard = props => {
