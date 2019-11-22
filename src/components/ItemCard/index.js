@@ -323,17 +323,31 @@ const ItemCard = props => {
 
   const reminderDateWebPush = async () => {
     const getBookedDate = reminder.dateReminder;
+    const getBookedTitle = reminder.name;
+    const getBookedDifference = 'X TEMPOS';
+    const message = `Seu evento ${getBookedTitle} está marcado para ${moment(
+      new Date(getBookedDate)
+    )
+      .locale('pt-br')
+      .format(
+        'DD/MM/YYYY HH:mm'
+      )}. Faltam exatamente ${getBookedDifference} para que ele ocorra`;
+
     const getDeviceIDOneSignal = localStorage.getItem('OSid');
+
+    console.log('TCL: reminderDateWebPush -> message', message);
     console.log(
       'TCL: reminderDateWebPush -> getDeviceIDOneSignal',
       getDeviceIDOneSignal
     );
+
     const dateTime = returnDateToNotify(getBookedDate, 1, 'minutes', 'add');
     await updateWebNotification(
       '220978c0-6406-46b8-88bf-5553ae66e3f8',
       'ODM5MzJjYjEtMDdhMi00NDQwLTg4YjItNzUxOTJjNGRhZGY3',
       [getDeviceIDOneSignal],
-      dateTime
+      dateTime,
+      { dt: message }
     );
   };
 
@@ -369,8 +383,8 @@ const ItemCard = props => {
     authID,
     senderID,
     dateTime,
-    data = { foo: 'bar' },
-    contents = { en: 'English Message' }
+    contents = { en: 'English Message' },
+    data = { foo: 'bar' }
   ) => {
     axios
       .post(
