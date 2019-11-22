@@ -307,7 +307,6 @@ const ItemCard = props => {
           [e.target.name]: e.target.value,
         });
         break;
-
       case 'Lembrete':
         setReminder({
           ...reminder,
@@ -315,7 +314,6 @@ const ItemCard = props => {
           type: typeOfCard,
           [e.target.name]: e.target.value,
         });
-
         break;
       default:
         break;
@@ -325,7 +323,7 @@ const ItemCard = props => {
   const reminderDateWebPush = () => {
     const getBookedDate = reminder.dateReminder;
     console.log('TCL: reminderDateWebPush -> getBookedDate', getBookedDate);
-    const getDeviceIDOneSignal = localStorager.get('OSid');
+    const getDeviceIDOneSignal = localStorage.getItem('OSid');
     console.log(
       'TCL: reminderDateWebPush -> getDeviceIDOneSignal',
       getDeviceIDOneSignal
