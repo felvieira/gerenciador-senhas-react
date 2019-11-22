@@ -266,14 +266,15 @@ const ItemCard = props => {
         return '';
     }
   };
+
   const sendHandler = index => {
     if (isNew) {
+      if (type === 'Lembrete') reminderDateWebPush();
       localStorager.set('data', data);
     } else {
       localStorager.update('data', index, data);
     }
     props.update();
-    if (type === 'Lembrete') reminderDateWebPush();
     props.backButton(props.isNew);
   };
 
@@ -320,16 +321,15 @@ const ItemCard = props => {
     }
   };
 
-  const reminderDateWebPush = () => {
+  const reminderDateWebPush = async () => {
     const getBookedDate = reminder.dateReminder;
-    console.log('TCL: reminderDateWebPush -> getBookedDate', getBookedDate);
     const getDeviceIDOneSignal = localStorage.getItem('OSid');
     console.log(
       'TCL: reminderDateWebPush -> getDeviceIDOneSignal',
       getDeviceIDOneSignal
     );
     const dateTime = returnDateToNotify(getBookedDate, 1, 'minutes', 'add');
-    updateWebNotification(
+    await updateWebNotification(
       '220978c0-6406-46b8-88bf-5553ae66e3f8',
       'ODM5MzJjYjEtMDdhMi00NDQwLTg4YjItNzUxOTJjNGRhZGY3',
       [getDeviceIDOneSignal],
