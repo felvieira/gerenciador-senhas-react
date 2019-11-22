@@ -93,7 +93,6 @@ export default class Card extends Component {
   render() {
     return this.props.list.map((item, i) => {
       const cor = switchColor(item.type);
-      console.log('TCL: render -> cor', cor);
       item.type = switchType(item.type);
 
       return (

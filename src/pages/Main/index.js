@@ -183,6 +183,7 @@ export default class Main extends Component {
   };
 
   backButton = isNew => {
+    console.log('TCL: Main -> backButton');
     if (isNew) {
       this.setState({ showNew: false });
     } else {
@@ -266,6 +267,7 @@ export default class Main extends Component {
   }
 
   getDataHandler = async () => {
+    console.log('TCL: Main -> getDataHandler -> getDataHandler');
     const pass = localStorage.getItem('pass');
     const dt = localStorage.getItem('data');
 

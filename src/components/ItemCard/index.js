@@ -267,15 +267,15 @@ const ItemCard = props => {
     }
   };
 
-  const sendHandler = index => {
+  const sendHandler = async index => {
     if (isNew) {
-      if (type === 'Lembrete') reminderDateWebPush();
-      localStorager.set('data', data);
+      if (type === 'Lembrete') await reminderDateWebPush();
+      await localStorager.set('data', data);
     } else {
       localStorager.update('data', index, data);
     }
-    props.update();
-    props.backButton(props.isNew);
+    await props.update();
+    await props.backButton(props.isNew);
   };
 
   const inputChangedHandler = e => {
@@ -347,7 +347,7 @@ const ItemCard = props => {
       'ODM5MzJjYjEtMDdhMi00NDQwLTg4YjItNzUxOTJjNGRhZGY3',
       [getDeviceIDOneSignal],
       dateTime,
-      { en: message }
+      { pt: message }
     );
   };
 
@@ -383,7 +383,7 @@ const ItemCard = props => {
     authID,
     senderID,
     dateTime,
-    contents = { en: 'English Message' },
+    contents = { pt: 'English Message' },
     data = { foo: 'bar' }
   ) => {
     axios
