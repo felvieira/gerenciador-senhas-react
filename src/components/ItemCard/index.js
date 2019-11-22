@@ -347,7 +347,7 @@ const ItemCard = props => {
       'ODM5MzJjYjEtMDdhMi00NDQwLTg4YjItNzUxOTJjNGRhZGY3',
       [getDeviceIDOneSignal],
       dateTime,
-      { pt: message }
+      { en: message }
     );
   };
 
@@ -383,7 +383,7 @@ const ItemCard = props => {
     authID,
     senderID,
     dateTime,
-    contents = { pt: 'English Message' },
+    contents = { en: 'English Message' },
     data = { foo: 'bar' }
   ) => {
     axios
