@@ -9,7 +9,6 @@ Input ao clicar no mobile ele estreita os inputs, no focus ele abre o teclado es
 Clicar na data fica escondido no mobile, talvez fazer um modal com ele centralizado
 colorir lixeiras, ou mudar a cor de todas
 Qdo nos filtros ele esta carregando mais ao puxar pra baixo o scroll
-Lembretes se nao preencher td nao salva
 
 <!-- Nova nota Lembrete com data e aviso por push -->
 <!-- Fazer loading das telas -->

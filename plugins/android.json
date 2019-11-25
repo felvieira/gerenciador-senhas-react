@@ -1,0 +1,24 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "br.com.aticcaconsignado.app"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "br.com.aticcaconsignado.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "br.com.aticcaconsignado.app"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "br.com.aticcaconsignado.app"
+    }
+  },
+  "dependent_plugins": {}
+}
