@@ -41,6 +41,7 @@
     "styled-components": "^4.4.0"
   },
   "scripts": {
+    "netlify": "react-scripts build",
     "start": "yarn remove:www && yarn react-scripts start",
     "build": "yarn remove:www && yarn react-scripts build",
     "build:cordova": "yarn remove:www && yarn react-scripts build && yarn node __script.js && move build www",
